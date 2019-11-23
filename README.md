@@ -7,6 +7,13 @@
 
 Pure Swift Cross-platform UIKit (Cocoa Touch) implementation (Supports Linux)
 
+
+## Important Places
+Mouse/human touch code
+
+UIEventEnvironment.event()
+
+
 ## Build
 
 ### OS X

@@ -64,7 +64,7 @@ internal final class UIEventEnvironment {
         
         switch hidEvent.data {
             
-        case let .touch(mouseEvent, screenLocation):
+        case let .mouse(mouseEvent, screenLocation):
             
             let event: UITouchesEvent
             
@@ -153,17 +153,17 @@ internal final class UIEventEnvironment {
             switch touch.phase {
                 
             case .began:
-                
+                logger.info("Touch began")
                 touchesEvent = event
                 
             case .moved,
                  .stationary:
-                
+                logger.info("Touch Moved")
                 touchesEvent?.timestamp = timestamp
                 
             case .ended,
                  .cancelled:
-                
+                logger.info("Touch ended")
                 touchesEvent = nil
             }
             

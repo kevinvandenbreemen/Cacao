@@ -153,17 +153,17 @@ internal final class UIEventEnvironment {
             switch touch.phase {
                 
             case .began:
-                logger.info("Touch began")
+                logger.trace("Touch began")
                 touchesEvent = event
                 
             case .moved,
                  .stationary:
-                logger.info("Touch Moved")
+                logger.trace("Touch Moved")
                 touchesEvent?.timestamp = timestamp
                 
             case .ended,
                  .cancelled:
-                logger.info("Touch ended")
+                logger.trace("Touch ended")
                 touchesEvent = nil
             }
             

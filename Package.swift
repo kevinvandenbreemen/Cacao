@@ -19,7 +19,8 @@ let package = Package(
         .package(
             url: "https://github.com/PureSwift/SDL.git",
             .branch("master")
-        )
+        ),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.2.0"),
     ],
     targets: [
         .target(
@@ -27,7 +28,8 @@ let package = Package(
             dependencies: [
                 "Silica",
                 "Cairo",
-                "SDL"
+                "SDL",
+                "Logging"
             ]
         ),
         .target(

@@ -8,8 +8,13 @@
 import Foundation
 import CSDL2
 import SDL
+import Logging
 
 // MARK: - Main SDL run loop
+
+struct Log {
+    static let logger: Logger = Logger.init(label: "SDLEventRun")
+}
 
 @_silgen_name("SDLEventRun")
 internal func SDLEventRun() {
@@ -79,14 +84,14 @@ internal func SDLEventRun() {
         
         if eventCount > 0 {
             
-            print("Polled \(eventCount) events (\(SDL_GetTicks() - startTime)ms)")
+            Log.logger.trace("Polled \(eventCount) events (\(SDL_GetTicks() - startTime)ms)")
         }
         
         // run loop
         let runLoopStartTime = SDL_GetTicks()
         runloop.run(mode: .default, before: Date() + (1.0 / TimeInterval(framesPerSecond)))
         //_UIApp.eventDispatcher.handleHIDEventFetcherDrain()
-        if eventCount > 0 { print("Runloop took (\(SDL_GetTicks() - runLoopStartTime)ms)") }
+        if eventCount > 0 { Log.logger.trace("Runloop took (\(SDL_GetTicks() - runLoopStartTime)ms)") }
         
         // render to screen
         do { try screen.update() }

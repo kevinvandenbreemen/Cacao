@@ -8,9 +8,12 @@
 import Foundation
 import SDL
 import CSDL2
+import Logging
 
 /// Polls the events and signals event availiblity to its delegate.
 internal final class UIEventFetcher {
+
+    private let logger: Logger = Logger.init(label: "UIEventFetcher")
     
     // MARK: - Properties
     
@@ -141,7 +144,7 @@ internal final class UIEventFetcher {
         // log signaling reason
         if incomingHIDEvents.isEmpty == false {
             
-            print("\(incomingHIDEvents.count) events availible with reason \(reason)")
+            logger.trace("\(incomingHIDEvents.count) events availible with reason \(reason)")
         }
         
         // signal

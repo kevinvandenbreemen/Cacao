@@ -9,8 +9,11 @@ import Foundation
 import CoreFoundation
 import SDL
 import CSDL2
+import Logging
 
 internal final class UIEventEnvironment {
+
+    private let logger: Logger = Logger.init(label: "UIEventEnvironment")
     
     internal private(set) weak var application: UIApplication!
     
@@ -48,7 +51,7 @@ internal final class UIEventEnvironment {
         
         if let hidEvent = eventQueue.first {
             
-            print("Processed \(eventQueue.count) events (\(SDL_GetTicks() - UInt32(hidEvent.timestamp))ms)")
+            logger.trace("Processed \(eventQueue.count) events (\(SDL_GetTicks() - UInt32(hidEvent.timestamp))ms)")
         }
         
         // clear queue

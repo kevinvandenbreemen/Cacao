@@ -6,6 +6,8 @@
 //  Copyright © 2016 PureSwift. All rights reserved.
 //
 
+import Logging
+
 #if os(macOS)
     import Darwin
 #elseif os(Linux)
@@ -22,10 +24,16 @@ import Silica
 #endif
 
 open class UIScrollView: UIView {
+
+    private var logger: Logger
     
     // MARK: - Initialization
     
     public override init(frame: CGRect) {
+
+        self.logger = Logger.init(label: "UIScrollView")
+        logger.logLevel = .info
+
         super.init(frame: frame)
         
         self.addGestureRecognizer(panGestureRecognizer)
@@ -503,8 +511,24 @@ open class UIScrollView: UIView {
             }
             
             // non-bouncing content offset
-            contentOffset.x = max(contentOffset.x, 0)
-            contentOffset.y = max(contentOffset.y, 0)
+            let boundingBox = contentSize
+            logger.debug("Updating content offset for \(contentOffset), vs contentSize=\(boundingBox)")
+            if contentOffset.x >= 0 {
+                contentOffset.x = min(contentOffset.x, boundingBox.width)
+            }
+            else {
+                logger.debug("offset.x = \(contentOffset.x) - must compensate against \(boundingBox)")
+                contentOffset.x = max(contentOffset.x, -(boundingBox.width - (CGFloat(boundingBox.width * 0.5))))
+            }
+
+            if contentOffset.y >= 0 {
+                contentOffset.y = min(contentOffset.y, boundingBox.height)
+            }
+            else {
+                logger.debug("offset.y = \(contentOffset.y) - must compensate against \(boundingBox)")
+                contentOffset.y = max(contentOffset.y, -(boundingBox.height - (CGFloat(boundingBox.height * 0.5))))
+            }
+            
             
             // no scrolling if content size is smaller or exactly the size of the scroll view
             if contentSize.width <= scrollerBounds.size.width {
@@ -543,6 +567,8 @@ open class UIScrollView: UIView {
             }
         }
  
+        logger.trace("ContentOffset = \(contentOffset)")
+
         return contentOffset
     }
     

@@ -10,7 +10,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/kevinvandenbreemen/Silica.git",
-            .branch("master")
+            .branch("forPullRequests")
         ),
         .package(
             url: "https://github.com/kevinvandenbreemen/Cairo.git",

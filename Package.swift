@@ -38,5 +38,6 @@ let package = Package(
                 "Cacao"
             ]
         ),
+        .testTarget(name: "CacaoTests", dependencies: ["Cacao"])
         ]
 )

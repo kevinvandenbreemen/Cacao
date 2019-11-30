@@ -9,8 +9,8 @@ let package = Package(
         ],
     dependencies: [
         .package(
-            url: "https://github.com/kevinvandenbreemen/Silica.git",
-            .branch("forPullRequests")
+            url: "https://github.com/PureSwift/Silica.git",
+            .branch("master")
         ),
         .package(
             url: "https://github.com/kevinvandenbreemen/Cairo.git",

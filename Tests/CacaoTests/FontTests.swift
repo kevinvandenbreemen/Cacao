@@ -11,7 +11,10 @@ import Cacao
 
 final class FontTests: XCTestCase {
     
-    static let allTests = [("testCreateFont", testCreateFont)]
+    static let allTests = [("testCreateFont", testCreateFont),
+                           ("Load System Font", testSystemFonts),
+                           ("Load Bold System Font", testBoldSystemFonts)
+    ]
     
     func testCreateFont() {
         
@@ -29,5 +32,13 @@ final class FontTests: XCTestCase {
             
             XCTAssert(fontName == font.fontName, "\(expectedFullName) == \(fontName)")
         }
+    }
+    
+    func testSystemFonts() {
+        UIFont.systemFont(ofSize: 12.0)
+    }
+    
+    func testBoldSystemFonts() {
+        UIFont.boldSystemFont(ofSize: 12.0)
     }
 }

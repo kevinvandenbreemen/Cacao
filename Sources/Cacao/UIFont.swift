@@ -11,6 +11,18 @@ import Silica
 
 public final class UIFont: Equatable {
     
+    #if os(Linux)
+    struct DefaultSystemFontNames {
+        static let systemFont = "HelveticaNeu"
+        static let systemFontBold = "HelveticaNeu-Bold"
+    }
+    #else
+    struct DefaultSystemFontNames {
+        static let systemFont = "MicrosoftSansSerif"
+        static let systemFontBold = "MicrosoftSansSerif-Bold"
+    }
+    #endif
+    
     // MARK: - Properties
     
     public let cgFont: CGFont
@@ -47,12 +59,12 @@ public extension UIFont {
     
     static func systemFont(ofSize size: CGFloat) -> UIFont {
         
-        return UIFont(name: "HelveticaNeu", size: size)!
+        return UIFont(name: DefaultSystemFontNames.systemFont, size: size)!
     }
     
     static func boldSystemFont(ofSize size: CGFloat) -> UIFont {
         
-        return UIFont(name: "HelveticaNeu-Bold", size: size)!
+        return UIFont(name: DefaultSystemFontNames.systemFontBold, size: size)!
     }
 }
 

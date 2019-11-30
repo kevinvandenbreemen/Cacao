@@ -18,6 +18,9 @@ final class RenderingTests: XCTestCase {
 
     func testViewSurface() {
         
+        //  Only execute this test in Linux environment
+        #if os(Linux)
+        
         let imageSize = CGSize(width: 240, height: 120)
         
         let window = Window(title: "\(#function)", frame: (x: .undefined, y: .undefined, width: Int(imageSize.width), height: Int(imageSize.height)))!
@@ -54,6 +57,7 @@ final class RenderingTests: XCTestCase {
             
             XCTAssert(expectedData == surfaceData, "Invalid data for frame \(frame)")
         }
+        #endif
     }
 }
 

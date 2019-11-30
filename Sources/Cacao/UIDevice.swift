@@ -216,7 +216,7 @@ public enum UIDeviceBatteryState: Int {
                 
                 let cString = UnsafeMutablePointer<CChar>.allocate(capacity: size)
                 
-                defer { cString.deallocate(capacity: size) }
+                defer { cString.deallocate() }
                 
                 sysctlbyname(name, cString, &size, nil, 0)
                 

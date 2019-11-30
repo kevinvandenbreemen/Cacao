@@ -17,8 +17,8 @@ let package = Package(
             .branch("master")
         ),
         .package(
-            url: "https://github.com/PureSwift/SDL.git",
-            .branch("master")
+            url: "https://github.com/kevinvandenbreemen/SDL-1.git",
+            .branch("forPullRequests")
         ),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.2.0"),
     ],
